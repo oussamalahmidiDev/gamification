@@ -37,7 +37,6 @@ Setup environment variables `DB_PASSWORD` :
 $ git clone blabla
 $ cd blabla
 $ echo DB_PASSWORD=mysecret > .env
-$ ./deploy.sh -b
 ```
 
 Run deployment script :

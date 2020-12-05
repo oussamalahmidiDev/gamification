@@ -2,3 +2,4 @@
 target
 .mvn
 .DS_Store
+.env
