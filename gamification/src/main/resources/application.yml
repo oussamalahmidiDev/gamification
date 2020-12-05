@@ -1,0 +1,29 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: gamification-service
+  # h2:
+  #   console:
+  #     enabled: true
+  # datasource:
+  #   url: 'jdbc:h2:file:./gamification;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=true;'
+  # jpa:
+  #   #    show-sql: true
+  #   hibernate:
+  #     ddl-auto: update
+
+amqp:
+  exchange:
+    attempts: "attempts.topic"
+  queue:
+    gamification: "gamification.queue"
+
+logging:
+  level:
+    org:
+      springframework:
+        amqp:
+          rabbit:
+            core:
+              RabbitAdmin: DEBUG

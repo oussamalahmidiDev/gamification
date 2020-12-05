@@ -1,0 +1,31 @@
+server:
+  port: 8000
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: multiplication
+          uri: lb://multiplication-service
+          predicates:
+            - Path=/challenges/**,/attempts,/attempts/**,/users/**
+        - id: gamification
+          uri: lb://gamification-service
+          predicates:
+           - Path=/leaders
+      default-filters:
+        - name: Retry
+          args:
+            retries: 3
+            methods: GET,POST
+    loadbalancer:
+      consul:
+        enabled: true
+        discovery:
+          query-passing: true
+  application:
+    name: gateway-server
+
+logging:
+  level:
+    org.springframework.cloud.gateway.handler.predicate: trace

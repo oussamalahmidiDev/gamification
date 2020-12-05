@@ -1,0 +1,47 @@
+[
+	{
+		"key": "config/",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "config/defaults,docker/",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "config/defaults,docker/application.yml",
+		"flags": 0,
+		"value": "c3ByaW5nOgogIHJhYmJpdG1xOgogICAgaG9zdDogcmFiYml0bXEKICBjbG91ZDoKICAgIGNvbnN1bDoKICAgICAgZGlzY292ZXJ5OgogICAgICAgIGluc3RhbmNlLWlkOiAke3NwcmluZy5hcHBsaWNhdGlvbi5uYW1lfS0ke3JhbmRvbS5pbnQoMTAwMCl9"
+	},
+	{
+		"key": "config/defaults/",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "config/defaults/application.yml",
+		"flags": 0,
+		"value": "bG9nZ2luZzoKICBsZXZlbDoKICAgIG9yZy5zcHJpbmdmcmFtZXdvcmsuY29yZS5lbnY6IERFQlVH"
+	},
+	{
+		"key": "config/gamification-service,docker/",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "config/gamification-service,docker/application.yml",
+		"flags": 0,
+		"value": "c3ByaW5nOgogIGpwYToKICAgICAgZGF0YWJhc2U6IFBPU1RHUkVTUUwKICAgICAgaGliZXJuYXRlOgogICAgICAgICAgICBkZGwtYXV0bzogdXBkYXRlCmRhdGFiYXNlOgogICAgICBwbGF0Zm9ybTogcG9zdGdyZXMKICAgICAgdXJsOiBqZGJjOnBvc3RncmVzcWw6Ly9nYW1pZmljYXRpb24tZGF0YWJhc2U6NTQzMy9wb3N0Z3JlcwogICAgICB1c2VybmFtZTogcG9zdGdyZXMKICAgICAgcGFzc3dvcmQ6IHBhc3M="
+	},
+	{
+		"key": "config/multiplication-service,docker/",
+		"flags": 0,
+		"value": ""
+	},
+	{
+		"key": "config/multiplication-service,docker/application.yml",
+		"flags": 0,
+		"value": "c3ByaW5nOgogIGpwYToKICAgICAgZGF0YWJhc2U6IFBPU1RHUkVTUUwKICAgICAgaGliZXJuYXRlOgogICAgICAgICAgICBkZGwtYXV0bzogdXBkYXRlCmRhdGFiYXNlOgogICAgICBwbGF0Zm9ybTogcG9zdGdyZXMKICAgICAgdXJsOiBqZGJjOnBvc3RncmVzcWw6Ly9tdWx0aXBsaWNhdGlvbi1kYXRhYmFzZTo1NDMyL3Bvc3RncmVzCiAgICAgIHVzZXJuYW1lOiBwb3N0Z3JlcwogICAgICBwYXNzd29yZDogcGFzcw=="
+	}
+]

@@ -1,0 +1,32 @@
+server:
+  error:
+    include-binding-errors: always
+    include-message: always
+spring:
+  application:
+    name: multiplication-service
+  # h2:
+  #   console:
+  #     enabled: true
+  # datasource:
+  #   url: 'jdbc:h2:file:./multiplication;DB_CLOSE_ON_EXIT=FALSE;AUTO_SERVER=true;'
+  # jpa:
+  #   hibernate:
+  #     ddl-auto: update
+
+#service:
+#  gamification:
+#    host: 'http://localhost:8090'
+
+amqp:
+  exchange:
+    attempts: "attempts.topic"
+
+logging:
+  level:
+    org:
+      springframework:
+        amqp:
+          rabbit:
+            core:
+              RabbitAdmin: DEBUG
