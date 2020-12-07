@@ -10,9 +10,9 @@ import java.util.Optional;
 
 public class FirstWonBadgeProcessor implements BadgeProcessor {
     @Override
-    public List<BadgeType> processForOptionalBadge(int currentScore, List<ScoreCard> scoreCards, ChallengeSolvedEvent result) {
+    public Optional<BadgeType> processForOptionalBadge(int currentScore, List<ScoreCard> scoreCards, ChallengeSolvedEvent result) {
         return scoreCards.size() == 1 ?
-            Collections.singletonList(BadgeType.FIRST_WON) : Collections.emptyList();
+            Optional.of(BadgeType.FIRST_WON) : Optional.empty();
     }
 
     @Override

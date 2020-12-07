@@ -19,6 +19,13 @@
         <spring-cloud.version>Hoxton.SR7</spring-cloud.version>
     </properties>
 
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>my-repo2</id>-->
+<!--            <name>your custom repo</name>-->
+<!--            <url>http://jarsm2.dyndns.dk</url>-->
+<!--        </repository>-->
+<!--    </repositories>-->
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -87,6 +94,11 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-sleuth</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jeasy</groupId>
+            <artifactId>easy-random-core</artifactId>
+            <version>4.0.0</version>
         </dependency>
     </dependencies>
 

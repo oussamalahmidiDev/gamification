@@ -5,7 +5,6 @@ import com.learn.microservices.gamification.game.badgeprocessors.BadgeProcessor;
 import com.learn.microservices.gamification.game.domain.BadgeCard;
 import com.learn.microservices.gamification.game.domain.BadgeType;
 import com.learn.microservices.gamification.game.domain.ScoreCard;
-import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -25,12 +24,14 @@ public class GameServiceImpl implements GameService {
     BadgeRepository badgeRepository;
     List<BadgeProcessor> badgeProcessors;
 
+    int DEFAULT_SCORE = 10;
+
     @Override
     public GameResult newAttemptForUser(final ChallengeSolvedEvent result) {
         if (result.isCorrect()) {
             ScoreCard scoreCard = ScoreCard.builder()
                 .userId(result.getUserId())
-                .score(10)
+                .score(DEFAULT_SCORE)
                 .attemptId(result.getAttemptId())
                 .build();
             scoreRepository.save(scoreCard);
@@ -69,7 +70,7 @@ public class GameServiceImpl implements GameService {
         List<BadgeCard> newBadgeCards = badgeProcessors.stream()
             .filter(badgeProcessor -> !badges.contains(badgeProcessor.badgeType()))
             .map(badgeProcessor -> badgeProcessor.processForOptionalBadge(totalScore, scoreCards, result))
-            .flatMap(List::stream)
+            .flatMap(Optional::stream)
             .map(badgeType ->  BadgeCard.builder().userId(result.getUserId()).badgeType(badgeType).build())
             .collect(Collectors.toList());
 
