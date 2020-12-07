@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/challenges")
 public class ChallengeController {
-    private final IChallengeService service;
+    private final ChallengeService service;
 
     @GetMapping("/random")
     ResponseEntity<Challenge> getRandomChallenge() {
-        Challenge challenge = service.randomChallenge();
+        Challenge challenge = service.generateRandomChallenge();
         log.info("Generated random challenge : {}", challenge);
         return ResponseEntity.ok(challenge);
     }

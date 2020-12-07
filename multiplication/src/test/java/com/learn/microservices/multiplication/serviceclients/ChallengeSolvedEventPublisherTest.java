@@ -3,7 +3,6 @@ package com.learn.microservices.multiplication.serviceclients;
 import com.learn.microservices.multiplication.challenge.ChallengeAttempt;
 import com.learn.microservices.multiplication.challenge.ChallengeSolvedEvent;
 import com.learn.microservices.multiplication.user.User;
-import lombok.var;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -34,7 +33,7 @@ class ChallengeSolvedEventPublisherTest {
     void sendsAttempt(boolean isCorrect) {
         ChallengeAttempt attempt = createTestAttempt(isCorrect);
 
-        publisher.publish(attempt);
+        publisher.publishChallengeSolvedEvent(attempt);
 
         ArgumentCaptor<String> exchange = ArgumentCaptor.forClass(String.class);
         ArgumentCaptor<String> key = ArgumentCaptor.forClass(String.class);

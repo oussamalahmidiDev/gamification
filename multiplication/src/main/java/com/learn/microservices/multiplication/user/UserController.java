@@ -16,8 +16,8 @@ import java.util.List;
 public class UserController {
     private final UserRepository userRepository;
 
-    @GetMapping()
-    public Iterable<User> getUsersByIdList() {
+    @GetMapping
+    public Iterable<User> getUsers() {
         log.info("Fetching users again");
         return userRepository.findAll();
     }

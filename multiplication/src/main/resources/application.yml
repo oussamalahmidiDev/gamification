@@ -14,9 +14,9 @@ spring:
   #   hibernate:
   #     ddl-auto: update
 
-#service:
-#  gamification:
-#    host: 'http://localhost:8090'
+service:
+  gamification:
+    host: 'http://localhost:8090'
 
 amqp:
   exchange:

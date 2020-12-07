@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/attempts")
 @RequiredArgsConstructor
 class ChallengeAttemptController {
-    private final IChallengeService service;
+    private final ChallengeService service;
 
     @PostMapping
     public ResponseEntity<ChallengeAttempt> postResults(@RequestBody @Valid ChallengeAttemptDTO attemptDTO) {

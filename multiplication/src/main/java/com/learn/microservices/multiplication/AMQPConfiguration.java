@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Configuration;
 public class AMQPConfiguration {
 
     @Bean
-    public TopicExchange attemptsTopicExchange(@Value("${amqp.exchange.attempts}") String exchange) {
+    public TopicExchange buildAttemptsTopicExchange(@Value("${amqp.exchange.attempts}") String exchangeName) {
         return ExchangeBuilder
-            .topicExchange(exchange)
+            .topicExchange(exchangeName)
             .durable(true)
             .build();
     }

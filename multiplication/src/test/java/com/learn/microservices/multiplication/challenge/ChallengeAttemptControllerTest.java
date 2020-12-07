@@ -1,11 +1,8 @@
 package com.learn.microservices.multiplication.challenge;
 
 import com.learn.microservices.multiplication.user.User;
-import com.learn.microservices.multiplication.user.UserRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -17,9 +14,7 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.assertj.core.api.BDDAssertions.and;
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.mockito.AdditionalAnswers.returnsFirstArg;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
@@ -31,7 +26,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 class ChallengeAttemptControllerTest {
 
     @MockBean
-    private IChallengeService service;
+    private ChallengeService service;
 
     @Autowired
     private MockMvc mockMvc;

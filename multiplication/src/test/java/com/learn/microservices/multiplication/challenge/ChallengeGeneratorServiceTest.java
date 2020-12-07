@@ -1,6 +1,7 @@
 package com.learn.microservices.multiplication.challenge;
 
-//import com.learn.microservices.multiplication.serviceclients.GamificationServiceClient;
+import com.learn.microservices.multiplication.serviceclients.ChallengeSolvedEventPublisher;
+import com.learn.microservices.multiplication.serviceclients.GamificationServiceClient;
 import com.learn.microservices.multiplication.user.User;
 import com.learn.microservices.multiplication.user.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 
 import java.util.Optional;
 import java.util.Random;
@@ -21,41 +24,47 @@ import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 @ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class ChallengeGeneratorServiceTest {
 
-    private IChallengeService service;
+    private ChallengeService service;
 
-//    @Spy
+    @Spy
     private Random random;
 
 
-//    @Mock
+    @Mock
     private UserRepository userRepository;
 
-//    @Mock
-//    private GamificationServiceClient gamificationServiceClient;
+    @Mock
+    private GamificationServiceClient gamificationServiceClient;
 
-//    @Mock
+    @Mock
+    private ChallengeSolvedEventPublisher challengeSolvedEventPublisher;
+
+    @Mock
     private ChallengeAttemptRepository challengeAttemptRepository;
 
 
-//    @BeforeEach
+    @BeforeEach
     public void setUp() {
-//        service = new ChallengeService(userRepository, challengeAttemptRepository, gamificationServiceClient);
-//        given(challengeAttemptRepository.save(any()))
-//            .will(returnsFirstArg());
+        service = new ChallengeServiceImpl(userRepository, challengeAttemptRepository, challengeSolvedEventPublisher, gamificationServiceClient);
+        given(challengeAttemptRepository.save(any()))
+            .will(returnsFirstArg());
     }
 
-//    @Test
+    @Test
     public void generatedRandomFactoriesBetweenExpectedLimits() {
         given(random.nextInt(89)).willReturn(20, 30);
 
-        Challenge challenge = service.randomChallenge();
+        Challenge challenge = service.generateRandomChallenge();
 
-        then(challenge).isEqualTo(new Challenge(31, 41));
+        then(challenge.getFactorA()).isBetween(11, 100);
+        then(challenge.getFactorB()).isBetween(11, 100);
+
     }
 
-//    @Test
+    @Test
     void verifyCorrectAttemptTest() {
         ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 60, "oussama", 3000);
 
@@ -67,7 +76,7 @@ class ChallengeGeneratorServiceTest {
         verify(challengeAttemptRepository).save(result);
     }
 
-//    @Test
+    @Test
     void verifyWrongAttemptTest() {
         ChallengeAttemptDTO attemptDTO = new ChallengeAttemptDTO(50, 60, "oussama", 300);
 
@@ -76,7 +85,7 @@ class ChallengeGeneratorServiceTest {
         then(result.isCorrect()).isFalse();
     }
 
-//    @Test
+    @Test
     void verifyExistingAttemptsTest() {
 
         User existingUser = new User(1L, "oussama");

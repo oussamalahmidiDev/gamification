@@ -2,16 +2,18 @@ package com.learn.microservices.multiplication.serviceclients;
 
 import com.learn.microservices.multiplication.challenge.ChallengeAttempt;
 import com.learn.microservices.multiplication.challenge.ChallengeSolvedEvent;
-import lombok.RequiredArgsConstructor;
+import lombok.experimental.NonFinal;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
+@lombok.Value
+@NonFinal
 public class ChallengeSolvedEventPublisher {
 
-    private final AmqpTemplate amqpTemplate;
-    private final String attemptsTopicExchange;
+    AmqpTemplate amqpTemplate;
+    String attemptsTopicExchange;
 
     public ChallengeSolvedEventPublisher(
         AmqpTemplate amqpTemplate,
@@ -22,8 +24,8 @@ public class ChallengeSolvedEventPublisher {
     }
 
 
-    public void publish(final ChallengeAttempt attempt) {
-        ChallengeSolvedEvent challengeSolvedEvent = buildEvent(attempt);
+    public void publishChallengeSolvedEvent(final ChallengeAttempt attempt) {
+        ChallengeSolvedEvent challengeSolvedEvent = buildEventFromAttempt(attempt);
         amqpTemplate.convertAndSend(
             attemptsTopicExchange,
             "attempt." + (attempt.isCorrect()? "correct" : "wrong"),
@@ -31,7 +33,7 @@ public class ChallengeSolvedEventPublisher {
         );
     }
 
-    private ChallengeSolvedEvent buildEvent(ChallengeAttempt attempt) {
+    private ChallengeSolvedEvent buildEventFromAttempt(ChallengeAttempt attempt) {
         return new ChallengeSolvedEvent(
             attempt.getId(),
             attempt.isCorrect(),
