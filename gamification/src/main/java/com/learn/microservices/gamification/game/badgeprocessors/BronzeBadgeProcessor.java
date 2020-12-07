@@ -9,11 +9,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Component
 public class BronzeBadgeProcessor implements BadgeProcessor {
 
     @Override
-    public List<BadgeType> processForOptionalBadge(int currentScore, List<ScoreCard> scoreCards, ChallengeSolvedEvent challenge) {
+    public List<BadgeType> processForOptionalBadge(int currentScore, List<ScoreCard> scoreCards, ChallengeSolvedEvent result) {
         return currentScore > 50 ? Collections.singletonList(BadgeType.BRONZE) : Collections.emptyList();
     }
 

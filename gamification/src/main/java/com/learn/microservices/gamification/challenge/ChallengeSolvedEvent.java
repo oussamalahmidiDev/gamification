@@ -5,14 +5,12 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.Value;
 
-@Data
-@ToString
-@NoArgsConstructor
+@Value
 public class ChallengeSolvedEvent {
-    private long attemptId;
-    private boolean correct;
-    private int factorA;
-    private int factorB;
-    private long userId;
-    private String userAlias;
+    long attemptId;
+    boolean correct;
+    int factorA;
+    int factorB;
+    long userId;
+    String userAlias;
 }

@@ -12,47 +12,36 @@ import org.springframework.messaging.converter.MappingJackson2MessageConverter;
 import org.springframework.messaging.handler.annotation.support.DefaultMessageHandlerMethodFactory;
 import org.springframework.messaging.handler.annotation.support.MessageHandlerMethodFactory;
 
-
 @Configuration
 public class AMQPConfiguration {
 
     @Bean
-    public TopicExchange attemptsTopicExchange(@Value("${amqp.exchange.attempts}") String exchange) {
-        return ExchangeBuilder
-            .topicExchange(exchange)
-            .durable(true)
-            .build();
+    public TopicExchange buildAttemptsExchange(@Value("${amqp.exchange.attempts}") String exchangeName) {
+        return ExchangeBuilder.topicExchange(exchangeName).durable(true).build();
     }
 
     @Bean
-    public Queue gamificationQueue(@Value("${amqp.queue.gamification}") String queueName) {
-        return QueueBuilder
-            .durable(queueName)
-            .build();
+    public Queue buildGamificationQueue(@Value("${amqp.queue.gamification}") String queueName) {
+        return QueueBuilder.durable(queueName).build();
     }
 
     @Bean
-    public Binding correctAttemptsBinding(final Queue gamificationQueue,
-                                          final TopicExchange attemptsExchange) {
-        return BindingBuilder
-            .bind(gamificationQueue)
-            .to(attemptsExchange)
-            .with("attempt.correct");
+    public Binding correctAttemptsBinding(final Queue gamificationQueue, final TopicExchange attemptsExchange) {
+        return BindingBuilder.bind(gamificationQueue).to(attemptsExchange).with("attempt.correct");
     }
 
     @Bean
     public MessageHandlerMethodFactory messageHandlerMethodFactory() {
         DefaultMessageHandlerMethodFactory factory = new DefaultMessageHandlerMethodFactory();
         final MappingJackson2MessageConverter jsonConverter = new MappingJackson2MessageConverter();
-        jsonConverter.getObjectMapper().registerModule(
-            new ParameterNamesModule(JsonCreator.Mode.PROPERTIES));
+        jsonConverter.getObjectMapper().registerModule(new ParameterNamesModule(JsonCreator.Mode.PROPERTIES));
         factory.setMessageConverter(jsonConverter);
         return factory;
     }
 
     @Bean
     public RabbitListenerConfigurer rabbitListenerConfigurer(
-        final MessageHandlerMethodFactory messageHandlerMethodFactory) {
+            final MessageHandlerMethodFactory messageHandlerMethodFactory) {
         return (c) -> c.setMessageHandlerMethodFactory(messageHandlerMethodFactory);
     }
 

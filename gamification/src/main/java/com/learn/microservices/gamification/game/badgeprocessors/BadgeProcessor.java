@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BadgeProcessor {
-    List<BadgeType> processForOptionalBadge(int currentScore, List<ScoreCard> scoreCards, ChallengeSolvedEvent challenge);
+    List<BadgeType> processForOptionalBadge(int currentScore, List<ScoreCard> scoreCards, ChallengeSolvedEvent result);
 
     BadgeType badgeType();
 }

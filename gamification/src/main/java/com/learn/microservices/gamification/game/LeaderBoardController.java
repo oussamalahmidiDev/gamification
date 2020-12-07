@@ -14,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Slf4j
 class LeaderBoardController {
-    private final LeaderBoardService leaderBoardService;
+    private final LeaderBoardServiceImpl leaderBoardService;
 
     @GetMapping
     public List<LeaderBoardRow> getLeaderBoard() {

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class GameEventHandler {
 
-    private final GameService service;
+    private final GameServiceImpl service;
 
     @RabbitListener(queues = "${amqp.queue.gamification}")
     void handleChallengeSolvedEvent(final ChallengeSolvedEvent event) {
